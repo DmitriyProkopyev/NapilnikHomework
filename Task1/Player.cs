@@ -2,19 +2,16 @@
 
 namespace Task1
 {
-    internal class Player
+    public class Player
     {
-        private readonly int _maxHealth;
+        private int _health;
 
-        public int Health { get; private set; }
-
-        public Player(int maxHealth)
+        public Player(int health)
         {
-            if (maxHealth < 0)
-                throw new ArgumentOutOfRangeException(nameof(maxHealth));
+            if (health < 0)
+                throw new ArgumentOutOfRangeException(nameof(health));
 
-            _maxHealth = maxHealth;
-            Health = _maxHealth;
+            _health = health;
         }
 
         public void TakeDamage(int damage)
@@ -22,15 +19,13 @@ namespace Task1
             if (damage < 0)
                 throw new ArgumentOutOfRangeException(nameof(damage));
 
-            Health -= damage;
+            if (_health <= 0)
+                throw new InvalidOperationException(nameof(_health));
 
-            if (Health <= 0)
-            {
-                Health = 0;
-                Die();
-            }
+            _health -= damage;
+
+            if (_health < 0)
+                _health = 0;
         }
-
-        private void Die() => Console.WriteLine("Я умер");
     }
 }

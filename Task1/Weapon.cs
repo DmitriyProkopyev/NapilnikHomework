@@ -2,33 +2,30 @@
 
 namespace Task1
 {
-    internal class Weapon
+    public class Weapon
     {
-        public readonly int Damage;
+        private readonly int _damage;
+        private int _bullets;
 
-        public int BulletsCount { get; private set; }
-
-        public Weapon(int damage, int bulletsCount)
+        public Weapon(int damage, int bullets)
         {
             if (damage < 0)
                 throw new ArgumentOutOfRangeException(nameof(damage));
 
-            if (bulletsCount < 0)
-                throw new ArgumentOutOfRangeException(nameof(bulletsCount));
+            if (bullets < 0)
+                throw new ArgumentOutOfRangeException(nameof(bullets));
 
-            Damage = damage;
-            BulletsCount = bulletsCount;
+            _damage = damage;
+            _bullets = bullets;
         }
 
         public void Fire(Player player)
         {
-            if (BulletsCount > 0)
-            {
-                player.TakeDamage(Damage);
-                BulletsCount--;
-            }
-            else
-                throw new ArgumentOutOfRangeException(nameof(BulletsCount));
+            if (_bullets <= 0)
+                throw new InvalidOperationException(nameof(_bullets));
+
+            player.TakeDamage(_damage);
+            _bullets--;
         }
     }
 }

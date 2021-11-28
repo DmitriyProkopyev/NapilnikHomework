@@ -1,17 +1,14 @@
-﻿namespace Task1
+﻿using System;
+
+namespace Task1
 {
-    internal class Bot
+    public class Bot
     {
         private readonly Weapon _weapon;
 
-        public Bot(Weapon weapon)
-        {
-            _weapon = new Weapon(weapon.Damage, weapon.BulletsCount);
-        }
+        public Bot(Weapon weapon) =>
+            _weapon = weapon ?? throw new ArgumentNullException(nameof(weapon));
 
-        private void OnSeePlayer(Player player)
-        {
-            _weapon.Fire(player);
-        }
+        private void OnSeePlayer(Player player) => _weapon.Fire(player);
     }
 }
