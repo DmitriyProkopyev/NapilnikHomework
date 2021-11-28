@@ -1,13 +1,10 @@
 ﻿namespace Task2
 {
-    internal class Good
+    public class Good
     {
         public readonly string Name;
 
-        public Good(string name)
-        {
-            Name = name;
-        }
+        public Good(string name) => Name = name;
 
         public override bool Equals(object obj)
         {
