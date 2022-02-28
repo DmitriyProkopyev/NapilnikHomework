@@ -1,8 +1,8 @@
-﻿class PlayerData { }
+﻿class Player { }
 
 class Gun { }
 
-class TargetFollower { }
+class Follower { }
 
 class Units
 {
