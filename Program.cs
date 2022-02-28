@@ -8,14 +8,13 @@ namespace Lesson
         {
             var friday = DayOfWeek.Friday;
 
-            var fileLogWriter = new FileLogger();
-            var consoleLogWriter = new ConsoleLogger();
+            var fileLogger = new Pathfinder(new FileLogger());
+            var consoleLogger = new Pathfinder(new ConsoleLogger());
+            var fridayFileLogger = new Pathfinder(new TimeLogger(friday, new FileLogger()));
+            var fridayConsoleLogger = new Pathfinder(new TimeLogger(friday, new ConsoleLogger()));
 
-            var fileLogger = new Pathfinder(fileLogWriter);
-            var consoleLogger = new Pathfinder(consoleLogWriter);
-            var fridayFileLogger = new Pathfinder(new TimeLogger(friday, fileLogWriter));
-            var fridayConsoleLogger = new Pathfinder(new TimeLogger(friday, consoleLogWriter));
-            var specialLogger = new Pathfinder(consoleLogWriter, new TimeLogger(friday, fileLogWriter));
+            var customLogger = new CustomLogger(new ConsoleLogger(), new TimeLogger(friday, new FileLogger()));
+            var specialLogger = new Pathfinder(customLogger);
         }
     }
 }

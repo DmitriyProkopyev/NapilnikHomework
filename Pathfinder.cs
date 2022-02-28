@@ -1,18 +1,19 @@
-﻿namespace Lesson
+﻿using System;
+
+namespace Lesson
 {
     internal class Pathfinder
     {
-        private ILogger[] _loggers;
+        private readonly ILogger _logger;
 
-        public Pathfinder(params ILogger[] loggers)
+        public Pathfinder(ILogger logger)
         {
-            _loggers = loggers;
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         public void Find()
         {
-            foreach (var logger in _loggers)
-                logger.WriteError("some message");
+            logger.WriteError("some message");
         }
     }
 }

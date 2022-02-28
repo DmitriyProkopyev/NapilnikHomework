@@ -4,13 +4,13 @@ namespace Lesson
 {
     internal class TimeLogger : ILogger
     {
-        private DayOfWeek _day;
-        private ILogger _logger;
+        private readonly DayOfWeek _day;
+        private readonly ILogger _logger;
 
         public TimeLogger(DayOfWeek day, ILogger logger)
         {
             _day = day;
-            _logger = logger;
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         public void WriteError(string message)
