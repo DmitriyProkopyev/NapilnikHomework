@@ -1,26 +1,35 @@
-﻿class Player
+﻿public class Player
 {
+    private readonly Mover _mover;
+    private readonly Weapon _weapon;
+
     public string Name { get; private set; }
     public int Age { get; private set; }
+}
 
-    public float WeaponCooldown { get; private set; }
-    public int WeaponDamage { get; private set; }
-
-    public float MovementDirectionX { get; private set; }
-    public float MovementDirectionY { get; private set; }
-    public float MovementSpeed { get; private set; }
+public class Mover
+{
+    public float DirectionX { get; private set; }
+    public float DirectionY { get; private set; }
+    public float Speed { get; private set; }
 
     public void Move()
     {
         throw new NotImplementedException();
     }
+}
 
-    public void Attack()
+public class Weapon
+{
+    public float Cooldown { get; private set; }
+    public int Damage { get; private set; }
+
+    public bool IsReloading()
     {
         throw new NotImplementedException();
     }
 
-    public bool IsReloading()
+    public void Attack()
     {
         throw new NotImplementedException();
     }
